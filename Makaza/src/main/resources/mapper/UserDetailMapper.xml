@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="makaza.mapper.UserDetailMapper">
+  <resultMap id="BaseResultMap" type="makaza.model.UserDetail">
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="PASSWORD_REMINDER_TOKEN" jdbcType="VARCHAR" property="passwordReminderToken" />
+    <result column="PASSWORD_REMINDER_EXPIRE" jdbcType="TIMESTAMP" property="passwordReminderExpire" />
+    <result column="EMAIL_CONFIRMATION_TOKEN" jdbcType="VARCHAR" property="emailConfirmationToken" />
+    <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
+    <result column="LAST_NAME" jdbcType="VARCHAR" property="lastName" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ID" jdbcType="INTEGER" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <select id="selectAll" parameterType="makaza.model.UserDetail" resultMap="BaseResultMap">
+    select ua.USER_NAME, ua.STATUS, ua.PASSWORD, 
+      ua.PASSWORD_REMINDER_TOKEN, ua.PASSWORD_REMINDER_EXPIRE, 
+      ua.EMAIL_CONFIRMATION_TOKEN, ua.FIRST_NAME, ua.LAST_NAME, 
+      ua.EMAIL, ua.ADDRESS, ua.PHONE_NUMBER, r.ID, r.ROLE_NAME
+    from user_account ua inner join user_role ur on ua.USER_NAME = ur.USER_NAME
+    	inner join roles r on ur.ROLE_ID = r.ID
+    where ua.DEL_FLG = '0'
+  </select>
+  
+  <select id="selectById" parameterType="makaza.model.UserDetail" resultMap="BaseResultMap">
+    select ua.USER_NAME, ua.STATUS, ua.PASSWORD, 
+      ua.PASSWORD_REMINDER_TOKEN, ua.PASSWORD_REMINDER_EXPIRE, 
+      ua.EMAIL_CONFIRMATION_TOKEN, ua.FIRST_NAME, ua.LAST_NAME, 
+      ua.EMAIL, ua.ADDRESS, ua.PHONE_NUMBER, r.ID, r.ROLE_NAME
+    from user_account ua inner join user_role ur on ua.USER_NAME = ur.USER_NAME
+    	inner join roles r on ur.ROLE_ID = r.ID
+    where ua.USER_NAME = #{userName,jdbcType=VARCHAR}
+    	and ua.DEL_FLG = '0'
+  </select>
+</mapper>

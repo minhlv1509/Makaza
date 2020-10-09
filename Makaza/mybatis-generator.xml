@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+ PUBLIC " -//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- The location of the database jar package -->
+	<context id="default" targetRuntime="Mybatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComents" value="true" />
+		</commentGenerator>
+		
+		<!-- Database connection -->
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/makazadb"
+			userId="root" password="">
+		</jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- Generate entity class address -->
+		<javaModelGenerator
+			targetPackage="makaza.model"
+			targetProject="Makaza/src/main/java"></javaModelGenerator>
+			
+		<!-- Generate mapper xml file -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="Makaza/src/main/resources"></sqlMapGenerator>
+			
+		<!-- Generate mapper xml corresponding class -->
+		<javaClientGenerator
+			targetPackage="makaza.mapper" type="XMLMAPPER"
+			targetProject="Makaza/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- Table -->
+		<table tableName="roles" domainObjectName="Roles"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+	</context>
+</generatorConfiguration>
