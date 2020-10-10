@@ -12,12 +12,21 @@ import makaza.model.CustomUserDetails;
 import makaza.model.UserDetail;
 import makaza.serivce.UserDetailService;
 
+/**
+ * UserServiceImpl
+ * @author Minh
+ */
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
+	/** UserDetailService */
 	@Autowired
 	private UserDetailService userDetailService;
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetail user = this.userDetailService.findById(username);

@@ -20,28 +20,45 @@ import makaza.serivce.UserDetailService;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailService {
+	
+	/** UserDetailMapper */
 	@Autowired
 	private UserDetailMapper userDetailMapper;
 
+	/** UserAccountMapper */
 	@Autowired
 	private UserAccountMapper userAccountMapper;
 
+	/** UserRoleMapper */
 	@Autowired
 	private UserRoleMapper userRoleMapper;
 	
+	/** PasswordEncoder */
 	@Autowired
     private PasswordEncoder passwordEncoder;
 
+	/*
+	 * (non-Javadoc)
+	 * @see makaza.serivce.UserDetailService#findAllUsers()
+	 */
 	@Override
 	public List<UserDetail> findAllUsers() {
 		return this.userDetailMapper.selectAll();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see makaza.serivce.UserDetailService#findById(java.lang.String)
+	 */
 	@Override
 	public UserDetail findById(String userName) {
 		return this.userDetailMapper.selectById(userName);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see makaza.serivce.UserDetailService#save(makaza.model.UserDetail)
+	 */
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public void save(UserDetail userDetail) {
@@ -58,6 +75,10 @@ public class UserDetailServiceImpl implements UserDetailService {
 		this.userRoleMapper.insertSelective(userRole);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see makaza.serivce.UserDetailService#update(makaza.model.UserDetail)
+	 */
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public void update(UserDetail userDetail) {
@@ -75,9 +96,13 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 		UserRole userRole = new UserRole();
 		BeanUtils.copyProperties(userDetail, userRole);
-		this.userRoleMapper.insertOrUpdate(userRole);
+		this.userRoleMapper.update(userRole);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see makaza.serivce.UserDetailService#delete(java.lang.String)
+	 */
 	@Override
 	public void delete(String userName) {
 		this.userAccountMapper.deleteLogic(userName, CodeDef.DELETE.getCode());

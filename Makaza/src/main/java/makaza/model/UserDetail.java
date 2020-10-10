@@ -3,6 +3,10 @@ package makaza.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * UserDetail
+ * @author Minh
+ */
 public class UserDetail implements Serializable {
 
 	/** serialVersionUID */

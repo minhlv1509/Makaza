@@ -40,9 +40,9 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertOrUpdate" parameterType="makaza.model.UserRole">
-    insert into user_role (USER_NAME, ROLE_ID) 
-    values (#{userName,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}) 
-    on duplicate key update ROLE_ID=#{roleId,jdbcType=INTEGER};
+  <insert id="update" parameterType="makaza.model.UserRole">
+      update user_role set
+        ROLE_ID = #{roleId,jdbcType=INTEGER}
+      where USER_NAME = #{userName,jdbcType=VARCHAR}
   </insert>
 </mapper>

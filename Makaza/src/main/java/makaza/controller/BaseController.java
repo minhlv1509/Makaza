@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import makaza.common.CodeDef;
 import makaza.model.ReturnEnity;
 
+/**
+ * BaseController
+ * @author Minh
+ */
 public class BaseController {
 
 	/**

@@ -7,10 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * CustomUserDetails
+ * @author Minh
+ */
 public class CustomUserDetails implements UserDetails {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 2078853409882142500L;
+	
+	private static final String ROLE_PREFIX = "ROLE_";
 
 	UserDetail user;
 
@@ -20,7 +26,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority(user.getRoleName()));
+		return Collections.singleton(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRoleName()));
 	}
 
 	@Override

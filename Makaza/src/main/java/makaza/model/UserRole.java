@@ -1,5 +1,9 @@
 package makaza.model;
 
+/**
+ * UserRole
+ * @author Minh
+ */
 public class UserRole {
 
 	/**

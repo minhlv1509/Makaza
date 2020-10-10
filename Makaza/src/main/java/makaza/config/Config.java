@@ -13,6 +13,11 @@ import org.springframework.web.filter.CorsFilter;
  */
 @Configuration
 public class Config {
+	
+	/**
+	 * Config cross origin and method
+	 * @return CorsFilter
+	 */
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -12,22 +12,36 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import makaza.serivce.impl.UserServiceImpl;
 
+/**
+ * WebSecurityConfig
+ * @author Minh
+ */
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserServiceImpl userServiceImpl;
 
+	/**
+	 * Defind password encoder 
+	 * @return PasswordEncoder
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * Setting service and password encoder for spring security.
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder());
 	}
 
+	/**
+	 * Webconfig
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
 		http.csrf().disable().authorizeRequests()
@@ -35,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/api/*")
 	    .hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/api/*")
-	    .hasAnyRole("MEMBER")
+	    .hasRole("MEMBER")
 		.and().httpBasic();
 	}
 }

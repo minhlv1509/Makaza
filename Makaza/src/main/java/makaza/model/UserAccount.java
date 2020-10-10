@@ -2,6 +2,10 @@ package makaza.model;
 
 import java.util.Date;
 
+/**
+ * UserAccount
+ * @author Minh
+ */
 public class UserAccount {
 
 	/**

@@ -1,5 +1,9 @@
 package makaza.model;
 
+/**
+ * ReturnEnity
+ * @author Minh
+ */
 public class ReturnEnity {
 
 	private String success;

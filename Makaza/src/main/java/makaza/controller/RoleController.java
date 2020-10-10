@@ -29,7 +29,7 @@ import makaza.serivce.RoleService;
 @RestController
 public class RoleController extends BaseController {
 
-	/** User management */
+	/** Role management */
 	@Autowired
 	private RoleService roleService;
 

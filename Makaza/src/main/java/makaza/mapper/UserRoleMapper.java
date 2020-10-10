@@ -24,10 +24,10 @@ public interface UserRoleMapper {
 	int insertSelective(UserRole record);
 
 	/**
-	 * Insert or update userRole
+	 * Update userRole
 	 * 
 	 * @param record userRole
 	 * @return quantity
 	 */
-	int insertOrUpdate(UserRole record);
+	int update(UserRole record);
 }
